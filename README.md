@@ -1,2 +1,2 @@
-# EasyCaptions
+# EZcaptions
 Caption maker!
