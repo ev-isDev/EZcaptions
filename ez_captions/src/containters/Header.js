@@ -1,0 +1,10 @@
+
+const Header = () => {
+  return (
+    <header>
+        <h1>EZcaptions!</h1>
+    </header>
+  )
+}
+
+export default Header
