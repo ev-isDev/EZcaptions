@@ -1,8 +1,8 @@
 
 const Header = () => {
-  return (
-    <header>
-        <h1>EZcaptions!</h1>
+  return ( // just an extremely simple header. just contains an h1 tag
+    <header>  
+        <h1>EZcaptions!</h1> 
     </header>
   )
 }
