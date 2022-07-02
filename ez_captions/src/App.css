@@ -7,14 +7,14 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: red;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,44 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+h1 {
+  color: red;
+}
+
+.CaptionList {
+  float: left;
+  padding: 0 10px;
+}
+
+.Caption {
+  clear: both;
+}
+
+.Caption h3 {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.Caption p {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+#CaptionInputs {
+  width: 100vw;
+  clear: both;
+}
+
+#CaptionInputs input {
+  float: left;
+}
+
+#CaptionInputs button {
+  float: left;
 }
