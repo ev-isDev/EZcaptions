@@ -1,15 +1,18 @@
 {
     "captions": [
         {
-            "timestamp": "23:12",
+            "startTimeStamp": "23:12",
+            "endTimeStamp" : "23:42",
             "caption": "this is the first caption"
         },
         {
-            "timestamp": "28:08",
+            "startTimeStamp": "28:08",
+            "endTimeStamp" : "28:21",
             "caption": "this is the second caption"
         },
         {
-            "timestamp": "32:52",
+            "startTimeStamp": "32:52",
+            "endTimeStamp" : "33:20",
             "caption": "this is the third caption"
         }
     ]

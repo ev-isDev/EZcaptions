@@ -5,14 +5,21 @@ class CaptionList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputTimestamp: "",
+      inputStartTimestamp: "",
+      inputEndTimestamp: "",
       inputCaption: ""
     }
   }
 
-  handleTimestampInputChange(event) {
+  handleStartTimestampInputChange(event) {
     this.setState({
-      inputTimestamp: event.target.value
+      inputStartTimestamp: event.target.value,
+    })
+  }
+
+  handleEndTimestampInputChange(event) {
+    this.setState({
+      inputEndTimestamp: event.target.value,
     })
   }
 
@@ -28,16 +35,18 @@ class CaptionList extends React.Component {
         {this.props.captions.map((element, id) => {
           return (
             <div className="Caption" key={id}>
-              <h3>{element.timestamp} - </h3>
+              <h3>{element.startTimeStamp} -> </h3>
+              <h3>{element.endTimeStamp} : &nbsp;</h3>
               <p>{element.caption}</p>
             </div>
           );
         })
         }
         <div id="CaptionInputs">
-          <input placeholder="HH:MM" value={this.state.inputTimestamp} onChange={(event) => this.handleTimestampInputChange(event)} />
+          <input placeholder="HH:MM" value={this.state.inputStartTimestamp} onChange={(event) => this.handleStartTimestampInputChange(event)} />
+          <input placeholder="HH:MM" value={this.state.inputEndTimestamp} onChange={(event) => this.handleEndTimestampInputChange(event)} />
           <input placeholder="Caption" value={this.state.inputCaption} onChange={(event) => this.handleCaptionInputChange(event)} />
-          <button onClick={() => this.props.addCaption(this.state.inputTimestamp, this.state.inputCaption)}>+ Add Caption</button>
+          <button className='btn'onClick={() => this.props.addCaption(this.state.inputStartTimestamp, this.state.inputEndTimestamp, this.state.inputCaption)}>+ Add Caption</button>
         </div>
         <button onClick={() => this.props.removeCaption()}>- Remove Caption</button>
       </div>

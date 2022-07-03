@@ -12,10 +12,11 @@ class App extends React.Component {
     }
   }
 
-  addCaption = (timestamp, caption) => {
+  addCaption = (startTimeStamp, endTimeStamp, caption) => {
     const newCaption = {
-      "timestamp": timestamp,
-      "caption": caption
+      "startTimeStamp": startTimeStamp,
+      "endTimeStamp" : endTimeStamp,
+      "caption": caption,
     }
   
     const currentCaptions = this.state.captionList;
