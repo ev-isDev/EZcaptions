@@ -1,8 +1,11 @@
 import './App.css';
 import Header from './containers/Header';
+import CaptionWindow from './containers/TablePage';
 import React from 'react';
 import CaptionList from './containers/CaptionList';
 import Captions from './Captions.json';
+import TablePage from "./containers/TablePage";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +38,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <TablePage />
         <Header />
         <CaptionList captions={this.state.captionList} addCaption={this.addCaption} removeCaption={this.removeCaption} />
       </div>
