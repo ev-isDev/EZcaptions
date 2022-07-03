@@ -36,7 +36,7 @@ class CaptionList extends React.Component {
           return (
             <div className="Caption" key={id}>
               <h3>{element.startTimeStamp} -> </h3>
-              <h3>{element.endTimeStamp} : &nbsp;</h3>
+              <h3>{element.endTimeStamp} : &nbsp; </h3>
               <p>{element.caption}</p>
             </div>
           );
@@ -48,7 +48,7 @@ class CaptionList extends React.Component {
           <input placeholder="Caption" value={this.state.inputCaption} onChange={(event) => this.handleCaptionInputChange(event)} />
           <button className='btn'onClick={() => this.props.addCaption(this.state.inputStartTimestamp, this.state.inputEndTimestamp, this.state.inputCaption)}>+ Add Caption</button>
         </div>
-        <button onClick={() => this.props.removeCaption()}>- Remove Caption</button>
+        <button className='btn'onClick={() => this.props.removeCaption()}>- Remove Caption</button>
       </div>
     )
   }

@@ -1,46 +1,38 @@
 import './App.css';
 import Header from './containers/Header';
 import React from 'react';
-import CaptionList from './containers/CaptionList';
-import Captions from './Captions.json';
+import Captions from './containers/Captions'
+import { useState } from 'react'
+//import CaptionList from './containers/CaptionList';
+//import Captions from './Captions.json';
+//import TablePage from './containers/TablePage';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      captionList: Captions.captions
+const App = () => {
+  const [captions, setCaptions] = useState([
+    {
+        startTimeStamp: "23:12",
+        endTimeStamp: "23:42",
+        text: "this is the first caption"
+    },
+    {
+        startTimeStamp:'28:08',
+        endTimeStamp: "28:21",
+        text: "this is the second caption"
+    },
+    {
+        startTimeStamp: "32:52",
+        endTimeStamp: "33:20",
+        text: "this is the third caption"
     }
-  }
+    ])
 
-  addCaption = (startTimeStamp, endTimeStamp, caption) => {
-    const newCaption = {
-      "startTimeStamp": startTimeStamp,
-      "endTimeStamp" : endTimeStamp,
-      "caption": caption,
-    }
-  
-    const currentCaptions = this.state.captionList;
-    currentCaptions.push(newCaption);
-    
-    this.setState({
-      captionList: currentCaptions
-    });
-  }
 
-  removeCaption = (caption) => {
-    // js remove last array item method
-    // this.setState the new caption list
-    console.log("remove the caption")
-  }
-
-  render() {
     return (
-      <div className="App">
+      <div className= 'container'>
         <Header />
-        <CaptionList captions={this.state.captionList} addCaption={this.addCaption} removeCaption={this.removeCaption} />
+        <Captions captions={captions}/>
       </div>
-    );
-  }
+    )
 }
 
 export default App;
