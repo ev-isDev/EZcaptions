@@ -1,11 +1,11 @@
 import React from 'react'
 import { FaTimes } from 'react-icons/fa'
 
-const Caption = ({ caption }) => {
+const Caption = ({ caption, onDelete }) => {
   return (
     <div className='caption'>
-        <h3>{caption.text} <FaTimes style={{color:'red', cursor: 'pointer'}} /></h3>
-        <p>{caption.startTimeStamp} -> {caption.endTimeStamp}</p>
+        <h3>{caption.text} <FaTimes style={{color:'red', cursor: 'pointer'}} onClick={() => onDelete(caption.id)} /></h3>
+        <p>{caption.start} -> {caption.end}</p>
     </div>
   )
 }
