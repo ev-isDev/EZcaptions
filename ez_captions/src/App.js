@@ -1,9 +1,11 @@
 import './App.css';
 import Header from './containers/Header';
+import CaptionWindow from './containers/TablePage';
 import React from 'react';
 import Captions from './containers/Captions'
 import { useState } from 'react'
 import NewCaption from './containers/NewCaption';
+
 
 const App = () => {
   const [captions, setCaptions] = useState([ // default starting "captions"
@@ -46,6 +48,7 @@ const App = () => {
     }
 
     return (
+
       <div className= 'container'>
         <Header onClick={downloadCaptions}/> {/* onClick for the download button! */}
         <NewCaption onAdd={addCaption}/> {/* submission form with onAdd prop for the submit button */}
