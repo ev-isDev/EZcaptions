@@ -21,7 +21,8 @@ export const SubmitFile = () => {
 	};
 
     return (
-        <div>
+        <div className='download'>
+            <h3>Or input your own .srt file!</h3>
             <input type="file" name="file" onChange={changeHandler} className='btn' id='inputFile'/>
             <div>
 				<Button text="submit" color ="blue" onClick={handleSubmission}/>
