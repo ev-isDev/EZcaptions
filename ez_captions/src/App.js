@@ -68,7 +68,7 @@ const App = () => {
         <Header onClick={() => downloadCaptions(captions)}>Download Captions</Header>
         <NewCaption onAdd={addCaption}/> {/* submission form with onAdd prop for the submit button */}
         {captions.length > 0 ? // quick if statement for when there are no captions in the tool!
-        <Captions captions={captions} onDelete={deleteCaption} onToggle ={editCaption} onAdd={editCaption}/> :
+        <Captions captions={captions} onDelete={deleteCaption} onToggle ={editCaption} /> :
         'Please input caption info!'}
         <SubmitFile />
       </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { FaTimes } from 'react-icons/fa'
 import { useState } from 'react'
 
-const Caption = ({ caption, onDelete, onToggle, onAdd}) => {
+const Caption = ({ caption, onDelete, onToggle}) => {
 
   const [text, setText] = useState('')
   const [start, setStart] = useState('')
@@ -25,7 +25,7 @@ const Caption = ({ caption, onDelete, onToggle, onAdd}) => {
           return
       }
 
-      onAdd({text, start, end, edit})
+      onToggle({text, start, end, edit})
       setText('') // note here, we're changing the text box after a submission back to blank
       setStart('')
       setEnd('')
