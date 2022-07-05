@@ -4,6 +4,7 @@ import React from 'react';
 import Captions from './containers/Captions'
 import { useState } from 'react'
 import NewCaption from './containers/NewCaption';
+import SubmitFile from './containers/SubmitFile';
 
 const App = () => {
   const [captions, setCaptions] = useState([
@@ -60,6 +61,7 @@ const App = () => {
         {captions.length > 0 ? // quick if statement for when there are no captions in the tool!
         <Captions captions={captions} onDelete={deleteCaption} /> :
         'Please input caption info!'}
+        <SubmitFile />
       </div>
     )
 }
