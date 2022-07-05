@@ -17,7 +17,7 @@ const App = () => {
         edit: false
     },
     {
-      id: 2,
+        id: 2,
         start: "00:07",
         end: "00:12",
         text: "I am talking to you right now,",
@@ -56,10 +56,18 @@ const App = () => {
       id)) // filters by keeping all captions that aren't the deleted captions ID
     }
 
-    const editCaption = (id) => { // enables editing of captions
+    const handleEditCaption = (id) => { // enables editing of captions
       setCaptions(captions.map((caption) => caption.id ===
       id ? {...caption, edit: !caption.edit} : caption))
       console.log(id)
+      // setCaptions(captions.map((caption) => caption.id ===
+      // id ? updatedCaption : caption))
+    }
+
+    const editCaption = (updatedCaption) => {
+      console.log(updatedCaption)
+      setCaptions(captions.map((caption) => caption.id ===
+      updatedCaption.id ? updatedCaption : caption))
     }
 
     return (
@@ -68,7 +76,7 @@ const App = () => {
         <Header onClick={() => downloadCaptions(captions)}>Download Captions</Header>
         <NewCaption onAdd={addCaption}/> {/* submission form with onAdd prop for the submit button */}
         {captions.length > 0 ? // quick if statement for when there are no captions in the tool!
-        <Captions captions={captions} onDelete={deleteCaption} onToggle ={editCaption} /> :
+        <Captions captions={captions} onDelete={deleteCaption} onToggle ={handleEditCaption} onEdit={editCaption}/> :
         'Please input caption info!'}
         <SubmitFile />
       </div>

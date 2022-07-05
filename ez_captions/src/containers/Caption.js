@@ -1,15 +1,21 @@
 import React from 'react'
 import { FaTimes } from 'react-icons/fa'
 import { useState } from 'react'
+import { useContext } from 'react'
+import { setState } from 'react'
 
-const Caption = ({ caption, onDelete, onToggle}) => {
+const Caption = ({ caption, onDelete, onToggle, onEdit}) => {
 
-  const [text, setText] = useState('')
-  const [start, setStart] = useState('')
-  const [end, setEnd] = useState('')
+  const [text, setText] = useState(caption.text)
+  const [start, setStart] = useState(caption.start)
+  const [end, setEnd] = useState(caption.end)
+  const [id, setID] = useState(caption.id)
   const [edit, setEdit] = useState(false)
   // The useState function holds state in react and allows a user to change the state
   // with the set____ functions. the second parameter after const are functions to change the state!
+
+  //const {updateCaption} = useContext()
+
   const onSubmit = (e) => {
       e.preventDefault()
       if (!text) {
@@ -25,11 +31,7 @@ const Caption = ({ caption, onDelete, onToggle}) => {
           return
       }
 
-      onToggle({text, start, end, edit})
-      setText('') // note here, we're changing the text box after a submission back to blank
-      setStart('')
-      setEnd('')
-      setEdit(false) 
+      onEdit({text, start, end, edit, id})
   }
 
   return (
