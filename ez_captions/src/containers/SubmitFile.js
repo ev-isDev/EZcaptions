@@ -13,15 +13,16 @@ export const SubmitFile = () => {
 
     const handleSubmission = () => {
         const reader = new FileReader()
-        reader.onload = () => {
-            
+        reader.readAsText(selectedFile);
+        reader.onload = (e) => {
+            console.log(e.target.result);
         }
-        console.warn(selectedFile)
+        
 	};
 
     return (
         <div>
-            <input type="file" name="file" onChange={changeHandler} className='btn'/>
+            <input type="file" name="file" onChange={changeHandler} className='btn' id='inputFile'/>
             <div>
 				<Button text="submit" color ="blue" onClick={handleSubmission}/>
 			</div>
