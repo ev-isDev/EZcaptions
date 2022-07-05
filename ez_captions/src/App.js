@@ -56,7 +56,7 @@ const App = () => {
       id)) // filters by keeping all captions that aren't the deleted captions ID
     }
 
-    const handleEditCaption = (id) => { // enables editing of captions
+    const handleEditCaption = (id) => { // allows the pop up for the editing prompt
       setCaptions(captions.map((caption) => caption.id ===
       id ? {...caption, edit: !caption.edit} : caption))
       console.log(id)
@@ -64,7 +64,7 @@ const App = () => {
       // id ? updatedCaption : caption))
     }
 
-    const editCaption = (updatedCaption) => {
+    const editCaption = (updatedCaption) => { // actually does the editing!
       console.log(updatedCaption)
       setCaptions(captions.map((caption) => caption.id ===
       updatedCaption.id ? updatedCaption : caption))
