@@ -5,6 +5,8 @@ import Captions from './containers/Captions'
 import { useState } from 'react'
 import NewCaption from './containers/NewCaption';
 import SubmitFile from './containers/SubmitFile';
+import Login from './containers/Login';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const App = () => {
   const [captions, setCaptions] = useState([
@@ -74,6 +76,11 @@ const App = () => {
 
       <div className='container'>
         <Header onClick={() => downloadCaptions(captions)}>Download Captions</Header>
+        <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={Login}/>
+        </Switch>
+        </BrowserRouter>
         <NewCaption onAdd={addCaption}/> {/* submission form with onAdd prop for the submit button */}
         {captions.length > 0 ? // quick if statement for when there are no captions in the tool!
         <Captions captions={captions} onDelete={deleteCaption} onToggle ={handleEditCaption} onEdit={editCaption}/> :
