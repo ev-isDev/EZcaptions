@@ -6,6 +6,7 @@ export const NewCaption = ({ onAdd }) => {
     const [text, setText] = useState('')
     const [start, setStart] = useState('')
     const [end, setEnd] = useState('')
+    const [edit, setEdit] = useState(false)
     // The useState function holds state in react and allows a user to change the state
     // with the set____ functions. the second parameter after const are functions to change the state!
     const onSubmit = (e) => {
@@ -23,10 +24,11 @@ export const NewCaption = ({ onAdd }) => {
             return
         }
 
-        onAdd({text, start, end})
+        onAdd({text, start, end, edit})
         setText('') // note here, we're changing the text box after a submission back to blank
         setStart('')
-        setEnd('')     
+        setEnd('')
+        setEdit(false) 
     }
 
   return ( // below is the submission form for new captions
