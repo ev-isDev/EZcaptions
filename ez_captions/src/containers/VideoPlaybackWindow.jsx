@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "./hooks/App.css";
+import "../App.css";
 
 import video from "./assets/video.mp4";
 import useVideoPlayer from "./hooks/useVideoPlayer";
