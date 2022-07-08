@@ -18,6 +18,7 @@ body {
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
+  align-items: center;
 }
 
 .header {
@@ -116,3 +117,8 @@ footer {
   border: 1px solid ;
   padding: 5px;
 }
+
+video {
+  width: 100%;
+}
+
