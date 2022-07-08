@@ -1,13 +1,14 @@
+
 import './App.css';
 import Header from './containers/Header';
-import React from 'react';
 import Captions from './containers/Captions'
 import { useState } from 'react'
 import NewCaption from './containers/NewCaption';
 import SubmitFile from './containers/SubmitFile';
 import Login from './containers/Login';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import React, { useRef } from "react";
+import VideoPlaybackWindow from './containers/VideoPlaybackWindow';
 const App = () => {
   const [captions, setCaptions] = useState([
     // default starting "captions"
@@ -85,7 +86,8 @@ const App = () => {
         {captions.length > 0 ? // quick if statement for when there are no captions in the tool!
         <Captions captions={captions} onDelete={deleteCaption} onToggle ={handleEditCaption} onEdit={editCaption}/> :
         'Please input caption info!'}
-        <SubmitFile />
+        <SubmitFile/>
+          <VideoPlaybackWindow/>
       </div>
     )
 }
