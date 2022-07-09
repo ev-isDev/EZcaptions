@@ -1,10 +1,15 @@
 import React, { useRef } from "react";
-import "./hooks/App.css";
+import { useState } from "react";
+//import "./hooks/App.css";
 
 import video from "./assets/video.mp4";
 import useVideoPlayer from "./hooks/useVideoPlayer";
+import { AddPreviewCaption } from "./AddPreviewCaption";
+import PrevCaptions from "./PrevCaptions";
 
-const VideoPlaybackWindow = () => {
+
+const VideoPlaybackWindow = ({ savePrev }) => {
+    
     const videoElement = useRef(null);
     const {
         playerState,
@@ -14,6 +19,7 @@ const VideoPlaybackWindow = () => {
         handleVideoSpeed,
         toggleMute,
     } = useVideoPlayer(videoElement);
+    
     return (
         <div className="container">
             <div className="video-wrapper">
@@ -56,6 +62,8 @@ const VideoPlaybackWindow = () => {
                             <i className="bx bxs-volume-mute"></i>
                         )}
                     </button>
+                    <AddPreviewCaption savePrev={savePrev}/>
+                    
                 </div>
             </div>
         </div>

@@ -9,6 +9,8 @@ import Login from './containers/Login';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React, { useRef } from "react";
 import VideoPlaybackWindow from './containers/VideoPlaybackWindow';
+
+
 const App = () => {
   const [captions, setCaptions] = useState([
     // default starting "captions"
@@ -73,6 +75,10 @@ const App = () => {
       updatedCaption.id ? updatedCaption : caption))
     }
 
+    const savePreviewCaptions = (prevCaptions) => {
+      setCaptions([...captions, ...prevCaptions])
+    }
+
     return (
 
       <div className='container'>
@@ -87,7 +93,8 @@ const App = () => {
         <Captions captions={captions} onDelete={deleteCaption} onToggle ={handleEditCaption} onEdit={editCaption}/> :
         'Please input caption info!'}
         <SubmitFile/>
-          <VideoPlaybackWindow/>
+          <VideoPlaybackWindow savePrev={savePreviewCaptions}/>
+          
       </div>
     )
 }
