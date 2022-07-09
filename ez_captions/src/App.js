@@ -74,13 +74,14 @@ const App = () => {
     }
 
     return (
-      <div>
-        <Header onClick={() => downloadCaptions(captions)}>Download Captions</Header>
+      <div className = 'row'>
+        <div className='login'>
         <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Login}/>
         </Switch>
         </BrowserRouter>
+        </div>
       <div className='container'>
         <Header onClick={() => downloadCaptions(captions)}>Download Captions</Header>
         <NewCaption onAdd={addCaption}/> {/* submission form with onAdd prop for the submit button */}
@@ -88,8 +89,8 @@ const App = () => {
         <Captions captions={captions} onDelete={deleteCaption} onToggle ={handleEditCaption} onEdit={editCaption}/> :
         'Please input caption info!'}
         <SubmitFile/>
-          <VideoPlaybackWindow/>
       </div>
+      <VideoPlaybackWindow/>
     </div>
     )
 }
