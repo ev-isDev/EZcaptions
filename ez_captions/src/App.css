@@ -143,3 +143,14 @@ video {
   max-height: auto;
 }
 
+.bx {
+  min-width: 10px;
+  min-height: auto;
+
+}
+
+.bx-play {
+  min-width: 10px;
+  min-height: auto;
+}
+
