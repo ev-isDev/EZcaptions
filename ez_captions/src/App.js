@@ -74,14 +74,15 @@ const App = () => {
     }
 
     return (
-
-      <div className='container'>
+      <div>
         <Header onClick={() => downloadCaptions(captions)}>Download Captions</Header>
         <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Login}/>
         </Switch>
         </BrowserRouter>
+      <div className='container'>
+        <Header onClick={() => downloadCaptions(captions)}>Download Captions</Header>
         <NewCaption onAdd={addCaption}/> {/* submission form with onAdd prop for the submit button */}
         {captions.length > 0 ? // quick if statement for when there are no captions in the tool!
         <Captions captions={captions} onDelete={deleteCaption} onToggle ={handleEditCaption} onEdit={editCaption}/> :
@@ -89,6 +90,7 @@ const App = () => {
         <SubmitFile/>
           <VideoPlaybackWindow/>
       </div>
+    </div>
     )
 }
 
