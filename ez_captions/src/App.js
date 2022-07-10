@@ -6,6 +6,8 @@ import NewCaption from "./containers/NewCaption";
 import SubmitFile from "./containers/SubmitFile";
 import Login from "./containers/Login";
 import Header from "./containers/Header";
+import "./containers/RegisterStyle.css"
+import Form from "./containers/RegisterForm";
 
 import VideoPlaybackWindow from "./containers/VideoPlaybackWindow";
 import "./App.css";
@@ -88,6 +90,9 @@ const App = () => {
                         <Route exact path="/" component={Login} />
                     </Switch>
                 </BrowserRouter>
+                <div className="RegisterStyle">
+                <Form />
+            </div>
             </div>
 
             <div className="container">
