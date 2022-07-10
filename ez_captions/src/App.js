@@ -94,10 +94,9 @@ const App = () => {
         {captions.length > 0 ? // quick if statement for when there are no captions in the tool!
         <Captions captions={captions} onDelete={deleteCaption} onToggle ={handleEditCaption} onEdit={editCaption}/> :
         'Please input caption info!'}
-        <SubmitFile/>
-          <VideoPlaybackWindow savePrev={savePreviewCaptions}/>
+        <SubmitFile/> 
       </div>
-      <VideoPlaybackWindow/>
+      <VideoPlaybackWindow savePrev={savePreviewCaptions}/>
     </div>
     )
 }
