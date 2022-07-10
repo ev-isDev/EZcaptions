@@ -8,7 +8,11 @@ import { BsPauseFill } from 'react-icons/bs'
 import { BsFillVolumeMuteFill } from 'react-icons/bs'
 import { FaVolumeUp } from 'react-icons/fa'
 
-const VideoPlaybackWindow = () => {
+import { AddPreviewCaption } from "./AddPreviewCaption";
+
+
+const VideoPlaybackWindow = ({ savePrev }) => {
+    
     const videoElement = useRef(null);
     const {
         playerState,
@@ -18,6 +22,7 @@ const VideoPlaybackWindow = () => {
         handleVideoSpeed,
         toggleMute,
     } = useVideoPlayer(videoElement);
+    
     return (
         <div className="container">
             <div className="video-wrapper">
@@ -64,6 +69,8 @@ const VideoPlaybackWindow = () => {
                             <FaVolumeUp />
                         )}
                     </button>
+                    <AddPreviewCaption savePrev={savePrev}/>
+                    
                 </div>
             </div>
         </div>
