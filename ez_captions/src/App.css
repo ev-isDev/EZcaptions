@@ -6,6 +6,9 @@
   padding: 0;
 }
 
+
+
+
 body {
   font-family: 'Poppins', sans-serif;
 }
@@ -13,6 +16,14 @@ body {
 .row {
   display:flex;
   flex-direction: row;
+}
+
+.new_caption {
+  border: 1px solid black;
+  overflow: auto;
+  max-width: 500px;
+  padding: 30px;
+  border-radius: 5px;
 }
 
 .login {
@@ -41,7 +52,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 0px 10%;
 }
 
 .btn {
@@ -154,3 +165,7 @@ video {
   min-height: auto;
 }
 
+.logo {
+  max-width: 100px;
+  max-height: auto;
+}

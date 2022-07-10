@@ -1,20 +1,22 @@
 import PropTypes from 'prop-types'
 import Button from './Button'
+import logo from './EZ.jpg'
 
-const Header = ({ title ,onClick}) => {
+
+const Header = ({ title }) => {
   return (
     //contains the header rendering. contains an onClick prop for the Download button
     // the title prop allows a developer to quickly change the text in the header
     <header className='header'>
-        <h1>{title}</h1>
-        <Button color = 'blue' text = "Download Caption File" onClick={onClick}/>
+        <img className='logo' src= {logo} alt="logo"/>
+        
     </header>
   )
 }
 
 // these are default values for the Header text
 Header.defaultProps = {
-  title: "EZcaptions"
+  title: "captions"
 }
 
 Header.propTypes = {

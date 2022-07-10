@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
+import Button from './containers/Button'
 import Captions from "./containers/Captions";
 import NewCaption from "./containers/NewCaption";
 import SubmitFile from "./containers/SubmitFile";
@@ -81,26 +81,24 @@ const App = () => {
     };
 
     return (
+        <div>
+          <Header onClick={() => downloadCaptions(captions)}> Download Captions </Header>
         <div className="row">
-            <div className="login">
-                <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/" component={Login} />
-                    </Switch>
-                </BrowserRouter>
+            <div className='new_caption'> 
+            <NewCaption onAdd={addCaption} />
             </div>
-
             <div className="container">
-                <Header onClick={() => downloadCaptions(captions)}> Download Captions </Header>
-                <NewCaption onAdd={addCaption} />
+                <Button color = 'blue' text = "Download Caption File" onClick={downloadCaptions}/>
+                
                 {/* submission form with onAdd prop for the submit button */}
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
                     <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption}/>)
                     : ( "Please input caption info!" )}
                 <SubmitFile />
             </div>
-            <VideoPlaybackWindow savePrev={savePreviewCaptions} />
+            <VideoPlaybackWindow savePrev={savePreviewCaptions} onAdd = {addCaption}/>
         </div>
+      </div>
     );
 };
 
