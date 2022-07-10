@@ -1,11 +1,14 @@
 import React, { useRef } from "react";
-import { useState } from "react";
-//import "./hooks/App.css";
+import "../App.css";
 
 import video from "./assets/video.mp4";
 import useVideoPlayer from "./hooks/useVideoPlayer";
+import { BsPlayFill } from 'react-icons/bs';
+import { BsPauseFill } from 'react-icons/bs'
+import { BsFillVolumeMuteFill } from 'react-icons/bs'
+import { FaVolumeUp } from 'react-icons/fa'
+
 import { AddPreviewCaption } from "./AddPreviewCaption";
-import PrevCaptions from "./PrevCaptions";
 
 
 const VideoPlaybackWindow = ({ savePrev }) => {
@@ -32,9 +35,11 @@ const VideoPlaybackWindow = ({ savePrev }) => {
                     <div className="actions">
                         <button onClick={togglePlay}>
                             {!playerState.isPlaying ? (
-                                <i className="bx bx-play"></i>
+                                // <i className="bx bx-play">play</i>
+                                <BsPlayFill/>
                             ) : (
-                                <i className="bx bx-pause"></i>
+                                // <i className="bx bx-pause">pause</i>
+                                <BsPauseFill/>
                             )}
                         </button>
                     </div>
@@ -57,9 +62,11 @@ const VideoPlaybackWindow = ({ savePrev }) => {
                     </select>
                     <button className="mute-btn" onClick={toggleMute}>
                         {!playerState.isMuted ? (
-                            <i className="bx bxs-volume-full"></i>
+                            // <i className="bx bxs-volume-full"></i>
+                            <BsFillVolumeMuteFill/>
                         ) : (
-                            <i className="bx bxs-volume-mute"></i>
+                            //<i className="bx bxs-volume-mute"></i>
+                            <FaVolumeUp />
                         )}
                     </button>
                     <AddPreviewCaption savePrev={savePrev}/>

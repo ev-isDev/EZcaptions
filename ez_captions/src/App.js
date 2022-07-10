@@ -80,22 +80,24 @@ const App = () => {
     }
 
     return (
-
-      <div className='container'>
-        <Header onClick={() => downloadCaptions(captions)}>Download Captions</Header>
+      <div className = 'row'>
+        <div className='login'>
         <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Login}/>
         </Switch>
         </BrowserRouter>
+        </div>
+      <div className='container'>
+        <Header onClick={() => downloadCaptions(captions)}>Download Captions</Header>
         <NewCaption onAdd={addCaption}/> {/* submission form with onAdd prop for the submit button */}
         {captions.length > 0 ? // quick if statement for when there are no captions in the tool!
         <Captions captions={captions} onDelete={deleteCaption} onToggle ={handleEditCaption} onEdit={editCaption}/> :
         'Please input caption info!'}
-        <SubmitFile/>
-          <VideoPlaybackWindow savePrev={savePreviewCaptions}/>
-          
+        <SubmitFile/> 
       </div>
+      <VideoPlaybackWindow savePrev={savePreviewCaptions}/>
+    </div>
     )
 }
 
