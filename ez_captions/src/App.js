@@ -11,6 +11,7 @@ import Form from "./containers/RegisterForm";
 
 import VideoPlaybackWindow from "./containers/VideoPlaybackWindow";
 import "./App.css";
+import { parseSRT } from "./containers/SubmitFile";
 
 const App = () => {
     const [captions, setCaptions] = useState([
@@ -38,13 +39,39 @@ const App = () => {
         },
     ]);
 
+    let capFile = null;
+
     // add a new caption and give it a random ID
     const addCaption = (caption) => {
         const id = Math.floor(Math.random() * 10000) + 1; // give the new caption a random ID
         const newCaption = { id, ...caption };
-        setCaptions([...captions, newCaption]); // update the captions list as the previous list AND the new caption
+        setCaptions((captions) => [...captions, newCaption]); // update the captions list as the previous list AND the new caption
+    };
+    
+    const deleteCaption = (id) => {
+        // filters by keeping all captions that aren't the deleted captions ID
+        setCaptions((captions) => captions.filter((caption) => caption.id !== id));
     };
 
+    // allows the pop up for the editing prompt
+    const handleEditCaption = (id) => {
+        setCaptions((captions) =>  captions.map((caption) => caption.id === id
+            ? { ...caption, edit: !caption.edit } : caption ) );
+        // setCaptions(captions.map((caption) => caption.id ===
+        // id ? updatedCaption : caption))
+    };
+
+    // actually does the editing!
+    const editCaption = (updatedCaption) => {
+        setCaptions((captions) =>  captions.map((caption) => caption.id ===
+        updatedCaption.id ? updatedCaption : caption ) );
+    };
+
+    // delete all captions function
+    const deleteAllCaptions = () => {
+        setCaptions((captions) => []);
+    }
+    
     const downloadCaptions = (captions) => {
         const text = captions.map( (caption, counter) =>
             `${counter + 1}\n00:${caption.start},000 --> 00:${ caption.end },000\n${caption.text}\n\n`).join("");
@@ -57,29 +84,17 @@ const App = () => {
         URL.revokeObjectURL(url);
     };
 
-    const deleteCaption = (id) => {
-        // filters by keeping all captions that aren't the deleted captions ID
-        setCaptions(captions.filter((caption) => caption.id !== id));
-    };
-
-    // allows the pop up for the editing prompt
-    const handleEditCaption = (id) => {
-        setCaptions( captions.map((caption) => caption.id === id
-            ? { ...caption, edit: !caption.edit } : caption ) );
-        console.log(id);
-        // setCaptions(captions.map((caption) => caption.id ===
-        // id ? updatedCaption : caption))
-    };
-
-    // actually does the editing!
-    const editCaption = (updatedCaption) => {
-        console.log(updatedCaption);
-        setCaptions( captions.map((caption) => caption.id ===
-        updatedCaption.id ? updatedCaption : caption ) );
-    };
-
     const savePreviewCaptions = (prevCaptions) => {
-        setCaptions([...captions, ...prevCaptions]);
+        setCaptions((captions) => [...captions, ...prevCaptions]);
+    };
+
+    const setCaptionFile = (file) => {
+        capFile = file;
+    };
+
+    const importCaptionFile = () => {
+        const newCaptions = parseSRT(capFile);
+        setCaptions((captions) => newCaptions);
     };
 
     return (
@@ -100,9 +115,9 @@ const App = () => {
                 <NewCaption onAdd={addCaption} />
                 {/* submission form with onAdd prop for the submit button */}
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
-                    <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption}/>)
+                    <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption} /> )
                     : ( "Please input caption info!" )}
-                <SubmitFile />
+                <SubmitFile onChange={setCaptionFile} onClick={importCaptionFile} />
             </div>
             <VideoPlaybackWindow savePrev={savePreviewCaptions} />
         </div>
