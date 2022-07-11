@@ -3,14 +3,12 @@ import Button from './Button'
 import logo from '../EZ.jpg'
 
 
-const Header = ({ title }) => {
+const Header = ({ onDownload }) => {
   return (
-    //contains the header rendering. contains an onClick prop for the Download button
-    // the title prop allows a developer to quickly change the text in the header
     <header className='header'>
         <img className='logo' src= {logo} alt="logo"/>
         <Button color={'green'} text = 'import'/>
-        <Button color={'blue'} text = 'export'/>
+        <Button color={'blue'} text = 'export' onClick = {onDownload}/>
         <Button color={'black'} text = 'Login'/>
 
         
@@ -18,13 +16,5 @@ const Header = ({ title }) => {
   )
 }
 
-// these are default values for the Header text
-Header.defaultProps = {
-  title: "captions"
-}
-
-Header.propTypes = {
-  title: PropTypes.string,
-}
 
 export default Header;

@@ -82,13 +82,12 @@ const App = () => {
 
     return (
         <div>
-          <Header onClick={() => downloadCaptions(captions)}> Download Captions </Header>
+          <Header onDownload={() => downloadCaptions(captions)} /> 
         <div className="row">
             <div className='new_caption'> 
             <NewCaption onAdd={addCaption} />
             </div>
             <div className="container">
-                <Button color = 'blue' text = "Download Caption File" onClick={downloadCaptions}/>
                 
                 {/* submission form with onAdd prop for the submit button */}
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
