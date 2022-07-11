@@ -11,6 +11,7 @@ import VideoPlaybackWindow from "./containers/VideoPlaybackWindow";
 import "./App.css";
 
 const App = () => {
+    const [importMenu, setImportMenu] = useState(false);
     const [captions, setCaptions] = useState([
         // default starting captions
         {
@@ -82,7 +83,8 @@ const App = () => {
 
     return (
         <div>
-          <Header onDownload={() => downloadCaptions(captions)} /> 
+          <Header onDownload={() => downloadCaptions(captions)} onImport={() => {setImportMenu(true)}} /> 
+          {importMenu && <SubmitFile closeModal={setImportMenu}/>}
         <div className="row">
             <div className='new_caption'> 
             <NewCaption onAdd={addCaption} />
@@ -93,10 +95,11 @@ const App = () => {
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
                     <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption}/>)
                     : ( "Please input caption info!" )}
-                <SubmitFile />
+                {/* <SubmitFile /> */}
             </div>
             <VideoPlaybackWindow savePrev={savePreviewCaptions} onAdd = {addCaption}/>
         </div>
+
       </div>
     );
 };
