@@ -18,12 +18,17 @@ body {
   flex-direction: row;
 }
 
+
+
 .new_caption {
   border: 1px solid black;
   overflow: auto;
-  max-width: 500px;
+  min-width: 500px;
   padding: 30px;
   border-radius: 5px;
+  max-height: 500px;
+  margin: 30px auto;
+  align-items: center;
 }
 
 .login {
@@ -38,21 +43,20 @@ body {
 }
 
 .container {
-  max-width: 500px;
+  min-width: 500px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid steelblue;
+  border: 2px solid black;
   padding: 30px;
   border-radius: 5px;
   align-items: center;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 10%;
+  justify-content: space-evenly;
+  max-height: 75px;
+  background-color: black;
 }
 
 .btn {
@@ -166,6 +170,6 @@ video {
 }
 
 .logo {
-  max-width: 100px;
+  max-width: 75px;
   max-height: auto;
 }

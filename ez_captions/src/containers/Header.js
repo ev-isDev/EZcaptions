@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import Button from './Button'
-import logo from './EZ.jpg'
+import logo from '../EZ.jpg'
 
 
 const Header = ({ title }) => {
@@ -9,6 +9,10 @@ const Header = ({ title }) => {
     // the title prop allows a developer to quickly change the text in the header
     <header className='header'>
         <img className='logo' src= {logo} alt="logo"/>
+        <Button color={'green'} text = 'import'/>
+        <Button color={'blue'} text = 'export'/>
+        <Button color={'black'} text = 'Login'/>
+
         
     </header>
   )
