@@ -31,23 +31,27 @@ export const SubmitFile = ({ closeModal }) => {
 
         <div className='modal-background'>
             <div className='modal-container'>
-                <button onClick={() => {closeModal(false)}}> X </button>
+                <div className='titleCloseBtn'>
+                <button className='titleCloseBtn button' onClick={() => {closeModal(false)}}> X </button>
+                </div>
                 <div className='title-modal'>
                     <h1>Are you sure you'd like to import</h1>
                     </div>
-                    <div>
-                        <p>
-                            this will delete all captions currently
+                    <div className='modal-body'>
+                        
+                        <p >
+                            this will delete all captions currently in use!
                         </p>
+                        </div>
                          <div className='download'>
                         <input type="file" name="file" onChange={changeHandler} className='btn' id='inputFile'/>
-                         <div>
+                         <div className='titleCloseBtn'>
 		 		        <Button text="submit" color ="blue" onClick={handleSubmission}/>
 		 	        </div>
                     </div>
-                    </div>
-                    <div className='footer modal'>
-                        buttons here
+                    
+                    <div className='footer-modal'>
+                    
                     </div>
                 </div>
             </div>

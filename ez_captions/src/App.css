@@ -145,7 +145,6 @@ footer {
 
 .download {
   margin-top: 85px;
-  border: 1px solid ;
   padding: 5px;
 }
 
@@ -193,4 +192,31 @@ video {
   display: flex;
   flex-direction: column;
   padding: 25px;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.modal-body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.title-modal {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
 }
