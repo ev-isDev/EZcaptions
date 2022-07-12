@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Captions from "./containers/Captions";
@@ -38,6 +38,13 @@ const App = () => {
             edit: false,
         },
     ]);
+
+    // use effect to update the captions on every change
+    useEffect(() => {
+        console.log("render")
+        //console.log(captions);
+        setCaptions((captions) => captions);
+    }, [captions]);
 
     let capFile = null;
 
@@ -93,8 +100,9 @@ const App = () => {
     };
 
     const importCaptionFile = () => {
-        const newCaptions = parseSRT(capFile);
-        setCaptions((captions) => newCaptions);
+        let newCaptions = parseSRT(capFile);
+        deleteAllCaptions();
+        setCaptions((captions) => [...captions, ...newCaptions]);
     };
 
     return (
