@@ -1,6 +1,6 @@
 import React from 'react';
+import Button from './Button';
 import {ReactComponent as Logo} from '../loginLogo.svg'
-//import './login.css'
 
 class Login extends React.Component {
     state = {
@@ -17,7 +17,24 @@ class Login extends React.Component {
     }
     render(){
         return(
-            <div>
+
+
+            <div className='modal-background'>
+            <div className='modal-container'>
+                <div className='titleCloseBtn'>
+                <button className='titleCloseBtn button' onClick={() => {this.props.closeModal(false)}}> X </button>
+                </div>
+                <div className='title-modal'>
+                    <h1>Are you sure you'd like to import</h1>
+                    </div>
+                    <div className='modal-body'>
+                        
+                        <p >
+                            this will delete all captions currently in use!
+                        </p>
+                        </div>
+                        
+                        <div>
                 <div>
                     <Logo className = 'loginlogo'/>
                 </div>
@@ -28,6 +45,11 @@ class Login extends React.Component {
                         <button onSubmit = {this.handleSubmit}>Log in</button>
                     </form>
                     
+                </div>
+            </div>
+                    <div className='footer-modal'>
+                    
+                    </div>
                 </div>
             </div>
         )

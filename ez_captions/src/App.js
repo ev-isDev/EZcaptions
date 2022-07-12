@@ -12,6 +12,7 @@ import "./App.css";
 
 const App = () => {
     const [importMenu, setImportMenu] = useState(false);
+    const [loginMenu, setLoginMenu] = useState(false);
     const [captions, setCaptions] = useState([
         // default starting captions
         {
@@ -83,8 +84,9 @@ const App = () => {
 
     return (
         <div>
-          <Header onDownload={() => downloadCaptions(captions)} onImport={() => {setImportMenu(true)}} /> 
+          <Header onDownload={() => downloadCaptions(captions)} onImport={() => {setImportMenu(true)}} onLogin = {() => {setLoginMenu(true)}}/> 
           {importMenu && <SubmitFile closeModal={setImportMenu}/>}
+          {loginMenu && <Login closeModal ={setLoginMenu}/>}
         <div className="row">
             <div className='new_caption'> 
             <NewCaption onAdd={addCaption} />
