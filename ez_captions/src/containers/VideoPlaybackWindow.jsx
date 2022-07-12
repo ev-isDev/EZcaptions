@@ -7,8 +7,9 @@ import { BsPlayFill } from 'react-icons/bs';
 import { BsPauseFill } from 'react-icons/bs'
 import { BsFillVolumeMuteFill } from 'react-icons/bs'
 import { FaVolumeUp } from 'react-icons/fa'
+
 import { AddPreviewCaption } from "./AddPreviewCaption";
-import PrevCaptions from "./PrevCaptions";
+
 
 const VideoPlaybackWindow = ({ savePrev }) => {
     
