@@ -34,7 +34,7 @@ class Login extends React.Component {
                         </p>
                         </div>
                         
-                        {/* Start of Login */}
+                        {/* Start of Login  (Within Modal)*/}
 
             <div>
                 <div>
@@ -50,7 +50,7 @@ class Login extends React.Component {
                 </div>
             </div>
 
-                    {/* End of Login */}
+                    {/* End of Login  (End of modal)*/}
 
                     <div className='footer-modal'>
                     
