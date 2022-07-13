@@ -26,7 +26,7 @@ const VideoPlaybackWindow = ({ savePrev }) => {
     } = useVideoPlayer(videoElement);
     
     return (
-        <div className="container">
+        
             <div className="video-wrapper">
                 
                 <video
@@ -72,11 +72,11 @@ const VideoPlaybackWindow = ({ savePrev }) => {
                             <FaVolumeUp />
                         )}
                     </button>
-                    <AddPreviewCaption savePrev={savePrev}/>
+                    
                     
                 </div>
             </div>
-        </div>
+       
     );
 };
 

@@ -13,7 +13,7 @@ export const AddPreviewCaption = ({savePrev}) => {
 
     const [prevCaptions, setPrevCaptions] = useState([
       {
-        id: 1,
+        id: 4,
         start: "00:00",
         end: "00:00",
         text: "default",

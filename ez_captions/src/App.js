@@ -10,6 +10,7 @@ import "./containers/RegisterStyle.css"
 import Form from "./containers/RegisterForm";
 import { arrayMoveImmutable } from 'array-move';
 import InputURL from "./containers/InputURL";
+import { AddPreviewCaption } from "./containers/AddPreviewCaption";
 
 import VideoPlaybackWindow from "./containers/VideoPlaybackWindow";
 import "./App.css";
@@ -99,7 +100,7 @@ const App = () => {
 
             <div className="container">
                 <Header onClick={() => downloadCaptions(captions)}> Download Captions </Header>
-                <InputURL/>
+                
                 <NewCaption onAdd={addCaption} />
                 {/* submission form with onAdd prop for the submit button */}
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
@@ -107,7 +108,10 @@ const App = () => {
                     : ( "Please input caption info!" )}
                 <SubmitFile />
             </div>
-            <VideoPlaybackWindow savePrev={savePreviewCaptions} />
+            <div className="container">
+              <InputURL/>
+              <AddPreviewCaption savePrev={savePreviewCaptions}/>
+            </div>
         </div>
     );
 };
