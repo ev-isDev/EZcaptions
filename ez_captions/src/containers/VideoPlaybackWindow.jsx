@@ -7,6 +7,8 @@ import { BsPlayFill } from 'react-icons/bs';
 import { BsPauseFill } from 'react-icons/bs'
 import { BsFillVolumeMuteFill } from 'react-icons/bs'
 import { FaVolumeUp } from 'react-icons/fa'
+import ReactPlayer from 'react-player/youtube'
+import InputURL from "./InputURL";
 
 import { AddPreviewCaption } from "./AddPreviewCaption";
 
@@ -26,6 +28,7 @@ const VideoPlaybackWindow = ({ savePrev }) => {
     return (
         <div className="container">
             <div className="video-wrapper">
+            <InputURL/>
                 <video
                     src={video}
                     ref={videoElement}

@@ -8,6 +8,8 @@ import Login from "./containers/Login";
 import Header from "./containers/Header";
 import "./containers/RegisterStyle.css"
 import Form from "./containers/RegisterForm";
+import { arrayMoveImmutable } from 'array-move';
+import InputURL from "./containers/InputURL";
 
 import VideoPlaybackWindow from "./containers/VideoPlaybackWindow";
 import "./App.css";
