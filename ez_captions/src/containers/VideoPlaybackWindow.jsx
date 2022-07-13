@@ -28,7 +28,7 @@ const VideoPlaybackWindow = ({ savePrev }) => {
     return (
         <div className="container">
             <div className="video-wrapper">
-            <InputURL/>
+                
                 <video
                     src={video}
                     ref={videoElement}
