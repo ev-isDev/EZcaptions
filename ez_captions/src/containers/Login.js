@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from './Button';
 import { ReactComponent as Logo } from '../loginLogo.svg'
+import Form from './RegisterForm';
 
 class Login extends React.Component {
     state = {
@@ -31,7 +32,7 @@ class Login extends React.Component {
                         <button className='titleCloseBtn button' onClick={() => { this.props.closeModal(false) }}> X </button>
                     </div>
                     <div className='title-modal'>
-                        Log in
+                        Login
                     </div>
                     {/* Start of Login  (Within Modal)*/}
 
@@ -43,9 +44,11 @@ class Login extends React.Component {
                             <form onSubmit={this.handleSubmit}>
                                 <input type='email' name='email' placeholder='email...' required onChange={this.handleChange} />
                                 <input type='password' name='pwd' placeholder='password...' required onChange={this.handleChange} />
-                                <button onSubmit={this.handleSubmit}>Log in</button>
-                            </form>
+                                <button onSubmit={this.handleSubmit}>Login</button>    
+                            </form> 
+
                         </div>
+                        
                     </div>
 
                     {/* once variable showing is set to false, this message should show */}
@@ -55,7 +58,7 @@ class Login extends React.Component {
                     {/* End of Login  (End of modal)*/}
 
                     <div className='footer-modal'>
-
+                    <Form/>
                     </div>
                 </div>
             </div>

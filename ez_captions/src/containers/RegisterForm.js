@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import './RegisterStyle.css';
+
  
 export default function Form() {
  
@@ -67,7 +69,7 @@ export default function Form() {
   };
  
   return (
-    <div className="form">
+    <div className="App">
       <div>
         <h2>User Registration</h2>
       </div>
