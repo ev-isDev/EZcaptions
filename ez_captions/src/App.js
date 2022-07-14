@@ -6,6 +6,11 @@ import NewCaption from "./containers/NewCaption";
 import SubmitFile from "./containers/SubmitFile";
 import Login from "./containers/Login";
 import Header from "./containers/Header";
+import "./containers/RegisterStyle.css"
+import Form from "./containers/RegisterForm";
+import { arrayMoveImmutable } from 'array-move';
+import InputURL from "./containers/InputURL";
+import { AddPreviewCaption } from "./containers/AddPreviewCaption";
 
 import VideoPlaybackWindow from "./containers/VideoPlaybackWindow";
 import "./App.css";
@@ -90,16 +95,22 @@ const App = () => {
         <div className="row">
             <div className='new_caption'> 
             <NewCaption onAdd={addCaption} />
+
             </div>
             <div className="container">
-                
+
                 {/* submission form with onAdd prop for the submit button */}
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
                     <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption}/>)
                     : ( "Please input caption info!" )}
                 {/* <SubmitFile /> */}
             </div>
-            <VideoPlaybackWindow savePrev={savePreviewCaptions} onAdd = {addCaption}/>
+
+            <div className="container">
+              <InputURL/>
+              <AddPreviewCaption savePrev={savePreviewCaptions}/>
+            </div>
+
         </div>
 
       </div>

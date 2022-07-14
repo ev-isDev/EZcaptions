@@ -34,9 +34,9 @@ body {
 .login {
   max-width: 300px;
   border: 1px solid black;
-  /* margin: 30px auto; */
+  margin: 30px auto;
   overflow: auto;
-  max-height: 150px;
+  max-height: 550px;
   padding: 30px;
   border-radius: 5px;
   align-items: flex-start;
