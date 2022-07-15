@@ -7,13 +7,15 @@ import { BsPlayFill } from 'react-icons/bs';
 import { BsPauseFill } from 'react-icons/bs'
 import { BsFillVolumeMuteFill } from 'react-icons/bs'
 import { FaVolumeUp } from 'react-icons/fa'
+
 import ReactPlayer from 'react-player/youtube'
 import InputURL from "./InputURL";
 
-import { AddPreviewCaption } from "./AddPreviewCaption";
+
+// import { AddPreviewCaption } from "./AddPreviewCaption";
 
 
-const VideoPlaybackWindow = ({ savePrev }) => {
+const VideoPlaybackWindow = ({ savePrev, onAdd }) => {
     
     const videoElement = useRef(null);
     const {
@@ -26,6 +28,7 @@ const VideoPlaybackWindow = ({ savePrev }) => {
     } = useVideoPlayer(videoElement);
     
     return (
+
         
             <div className="video-wrapper">
                 
@@ -72,8 +75,7 @@ const VideoPlaybackWindow = ({ savePrev }) => {
                             <FaVolumeUp />
                         )}
                     </button>
-                    
-                    
+
                 </div>
             </div>
        
