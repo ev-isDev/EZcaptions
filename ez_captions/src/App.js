@@ -69,16 +69,14 @@ const App = () => {
 
     // allows the pop up for the editing prompt
     const handleEditCaption = (id) => {
+        // console.log(captions.indexOf(id));
         setCaptions( captions.map((caption) => caption.id === id
             ? { ...caption, edit: !caption.edit } : caption ) );
-        console.log(id);
-        // setCaptions(captions.map((caption) => caption.id ===
-        // id ? updatedCaption : caption))
     };
 
     // actually does the editing!
     const editCaption = (updatedCaption) => {
-        console.log(updatedCaption);
+        //console.log(updatedCaption);
         setCaptions( captions.map((caption) => caption.id ===
         updatedCaption.id ? updatedCaption : caption ) );
     };
@@ -86,6 +84,39 @@ const App = () => {
     const savePreviewCaptions = (prevCaptions) => {
         setCaptions([...captions, ...prevCaptions]);
     };
+
+    const moveCaptionUp = (id) => {
+        const captionList = [...captions];
+        for (var i = 0; i < captions.length; i++) {
+            if (captionList[i].id == id) {
+                if (i == 0) { // moving up the first element!
+                    break; // we're not gonna do anything for right now
+                }
+                const temp = captionList[i];
+                captionList[i] = captionList[i - 1];
+                captionList [i - 1] = temp;
+                setCaptions(captionList);
+                break; // we can stop now!
+            }
+        }
+    };
+
+    const moveCaptionDown = (id) => {
+        const captionList = [...captions];
+        for (var i = 0; i < captions.length; i++) {
+            if (captionList[i].id == id) {
+                if (i == captions.length - 1) { // moving down the last element!
+                    break; // we're not gonna do anything for right now
+                }
+                const temp = captionList[i];
+                captionList[i] = captionList[i + 1];
+                captionList [i + 1] = temp;
+                setCaptions(captionList);
+                break; // we can stop now!
+            }
+        }
+    };
+
 
     return (
         <div>
@@ -101,8 +132,9 @@ const App = () => {
 
                 {/* submission form with onAdd prop for the submit button */}
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
-                    <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption}/>)
-                    : ( "Please input caption info!" )}
+                    <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption} 
+                    onShiftup={moveCaptionUp} onShiftDown={moveCaptionDown}/>)
+                    : ( "Please input captions!" )}
                 {/* <SubmitFile /> */}
             </div>
 
