@@ -6,6 +6,9 @@
   padding: 0;
 }
 
+
+
+
 body {
   font-family: 'Poppins', sans-serif;
 }
@@ -13,6 +16,19 @@ body {
 .row {
   display:flex;
   flex-direction: row;
+}
+
+
+
+.new_caption {
+  border: 1px solid black;
+  overflow: auto;
+  min-width: 500px;
+  padding: 30px;
+  border-radius: 5px;
+  max-height: 500px;
+  margin: 30px auto;
+  align-items: center;
 }
 
 .login {
@@ -27,21 +43,20 @@ body {
 }
 
 .container {
-  max-width: 500px;
+  min-width: 500px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid steelblue;
+  border: 2px solid black;
   padding: 30px;
   border-radius: 5px;
   align-items: center;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  justify-content: space-evenly;
+  max-height: 75px;
+  background-color: black;
 }
 
 .btn {
@@ -130,7 +145,6 @@ footer {
 
 .download {
   margin-top: 85px;
-  border: 1px solid ;
   padding: 5px;
 }
 
@@ -154,3 +168,59 @@ video {
   min-height: auto;
 }
 
+.logo {
+  max-width: 75px;
+  max-height: auto;
+}
+
+.modal-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.modal-body {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.title-modal {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.caption-tools {
+  padding: 10px;
+}

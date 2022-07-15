@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
+import Button from './containers/Button'
 import Captions from "./containers/Captions";
 import NewCaption from "./containers/NewCaption";
 import SubmitFile from "./containers/SubmitFile";
@@ -16,6 +16,8 @@ import VideoPlaybackWindow from "./containers/VideoPlaybackWindow";
 import "./App.css";
 
 const App = () => {
+    const [importMenu, setImportMenu] = useState(false);
+    const [loginMenu, setLoginMenu] = useState(false);
     const [captions, setCaptions] = useState([
         // default starting captions
         {
@@ -67,16 +69,14 @@ const App = () => {
 
     // allows the pop up for the editing prompt
     const handleEditCaption = (id) => {
+        // console.log(captions.indexOf(id));
         setCaptions( captions.map((caption) => caption.id === id
             ? { ...caption, edit: !caption.edit } : caption ) );
-        console.log(id);
-        // setCaptions(captions.map((caption) => caption.id ===
-        // id ? updatedCaption : caption))
     };
 
     // actually does the editing!
     const editCaption = (updatedCaption) => {
-        console.log(updatedCaption);
+        //console.log(updatedCaption);
         setCaptions( captions.map((caption) => caption.id ===
         updatedCaption.id ? updatedCaption : caption ) );
     };
@@ -85,34 +85,79 @@ const App = () => {
         setCaptions([...captions, ...prevCaptions]);
     };
 
-    return (
-        <div className="row">
-            <div className="login">
-                <BrowserRouter>
-                    <Switch>
-                        <Route exact path="/" component={Login} />
-                    </Switch>
-                </BrowserRouter>
-                <div className="RegisterStyle">
-                <Form />
-            </div>
-            </div>
+    // function ensures two modals aren't open at the same time
+    const openImportMenu = () => {
+        setImportMenu(true);
+        setLoginMenu(false);
+    }
+    
+    // function ensures two modals aren't open at the same time
+    const openLoginMenu= () => {
+        setLoginMenu(true);
+        setImportMenu(false);
+    }
 
+    const moveCaptionUp = (id) => {
+        const captionList = [...captions];
+        for (var i = 0; i < captions.length; i++) {
+            if (captionList[i].id == id) {
+                if (i == 0) { // moving up the first element!
+                    break; // we're not gonna do anything for right now
+                }
+                const temp = captionList[i];
+                captionList[i] = captionList[i - 1];
+                captionList [i - 1] = temp;
+                setCaptions(captionList);
+                break; // we can stop now!
+            }
+        }
+    };
+
+    const moveCaptionDown = (id) => {
+        const captionList = [...captions];
+        for (var i = 0; i < captions.length; i++) {
+            if (captionList[i].id == id) {
+                if (i == captions.length - 1) { // moving down the last element!
+                    break; // we're not gonna do anything for right now
+                }
+                const temp = captionList[i];
+                captionList[i] = captionList[i + 1];
+                captionList [i + 1] = temp;
+                setCaptions(captionList);
+                break; // we can stop now!
+            }
+        }
+    };
+
+
+    return (
+        <div>
+          <Header onDownload={() => downloadCaptions(captions)} onImport={openImportMenu} onLogin = {openLoginMenu}/> 
+          {importMenu && <SubmitFile closeModal={setImportMenu}/>}
+          {loginMenu && <Login closeModal ={setLoginMenu}/>}
+        <div className="row">
+            <div className='new_caption'> 
+            <NewCaption onAdd={addCaption} />
+
+            </div>
             <div className="container">
-                <Header onClick={() => downloadCaptions(captions)}> Download Captions </Header>
-                
-                <NewCaption onAdd={addCaption} />
+
                 {/* submission form with onAdd prop for the submit button */}
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
-                    <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption}/>)
-                    : ( "Please input caption info!" )}
-                <SubmitFile />
+                    <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption} 
+                    onShiftup={moveCaptionUp} onShiftDown={moveCaptionDown}/>)
+                    : ( "Please input captions!" )}
+                {/* <SubmitFile /> */}
             </div>
+
             <div className="container">
               <InputURL/>
               <AddPreviewCaption savePrev={savePreviewCaptions}/>
             </div>
+
         </div>
+
+      </div>
     );
 };
 
