@@ -223,4 +223,5 @@ video {
 
 .caption-tools {
   padding: 10px;
+  max-width: 100px;
 }
