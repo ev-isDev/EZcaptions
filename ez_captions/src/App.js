@@ -85,6 +85,18 @@ const App = () => {
         setCaptions([...captions, ...prevCaptions]);
     };
 
+    // function ensures two modals aren't open at the same time
+    const openImportMenu = () => {
+        setImportMenu(true);
+        setLoginMenu(false);
+    }
+    
+    // function ensures two modals aren't open at the same time
+    const openLoginMenu= () => {
+        setLoginMenu(true);
+        setImportMenu(false);
+    }
+
     const moveCaptionUp = (id) => {
         const captionList = [...captions];
         for (var i = 0; i < captions.length; i++) {
@@ -120,7 +132,7 @@ const App = () => {
 
     return (
         <div>
-          <Header onDownload={() => downloadCaptions(captions)} onImport={() => {setImportMenu(true)}} onLogin = {() => {setLoginMenu(true)}}/> 
+          <Header onDownload={() => downloadCaptions(captions)} onImport={openImportMenu} onLogin = {openLoginMenu}/> 
           {importMenu && <SubmitFile closeModal={setImportMenu}/>}
           {loginMenu && <Login closeModal ={setLoginMenu}/>}
         <div className="row">
