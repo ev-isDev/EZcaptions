@@ -19,15 +19,15 @@ const InputURL = () => {
        }      
     }
   return (
-    <form onSubmit={validate}>
+    
         <div className='form-control'>
         <label>Upload a Youtube Video To Caption! </label>
         <input type='text' placeholder='Enter URL' value={URL} onChange={(e) => setURL(e.target.value)}/>
-        <input input type='submit' value='Enter' className='btn btn-block'/>
+        <button onClick={validate} className="btn" style={{width: '100%'}}>Enter</button>
         {valid ? <ReactPlayer width="100%" url={URL} controls/> : <VideoPlaybackWindow/>}
         
         </div>
-    </form>
+    
   )
 }
 
