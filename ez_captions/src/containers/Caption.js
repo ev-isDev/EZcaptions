@@ -15,8 +15,6 @@ const Caption = ({ caption, onDelete, onToggle, onEdit, onShiftup, onShiftDown }
   // The useState function holds state in react and allows a user to change the state
   // with the set____ functions. the second parameter after const are functions to change the state!
 
-  //const {updateCaption} = useContext()
-
   const onSubmit = (e) => {
       e.preventDefault()
       if (!text) {

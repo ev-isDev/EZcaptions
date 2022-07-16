@@ -45,6 +45,12 @@ const App = () => {
 
     // add a new caption and give it a random ID
     const addCaption = (caption) => {
+        for (var i = 0; i < captions.length; i++) {
+            if (caption.start === captions[i].start) { // same start time!
+                alert('Can\'t have two captions that start at the same time!')
+                return;
+            }
+        }   
         const id = Math.floor(Math.random() * 10000) + 1; // give the new caption a random ID
         const newCaption = { id, ...caption };
         setCaptions([...captions, newCaption]); // update the captions list as the previous list AND the new caption
@@ -100,8 +106,8 @@ const App = () => {
     const moveCaptionUp = (id) => {
         const captionList = [...captions];
         for (var i = 0; i < captions.length; i++) {
-            if (captionList[i].id == id) {
-                if (i == 0) { // moving up the first element!
+            if (captionList[i].id === id) {
+                if (i === 0) { // moving up the first element!
                     break; // we're not gonna do anything for right now
                 }
                 const temp = captionList[i];
@@ -116,8 +122,8 @@ const App = () => {
     const moveCaptionDown = (id) => {
         const captionList = [...captions];
         for (var i = 0; i < captions.length; i++) {
-            if (captionList[i].id == id) {
-                if (i == captions.length - 1) { // moving down the last element!
+            if (captionList[i].id === id) {
+                if (i === captions.length - 1) { // moving down the last element!
                     break; // we're not gonna do anything for right now
                 }
                 const temp = captionList[i];
