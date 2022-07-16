@@ -48,7 +48,7 @@ const App = () => {
         for (var i = 0; i < captions.length; i++) {
             if (caption.start === captions[i].start) { // same start time!
                 alert('Can\'t have two captions that start at the same time!')
-                return;
+                return; // we can't add the caption!
             }
         }   
         const id = Math.floor(Math.random() * 10000) + 1; // give the new caption a random ID
@@ -112,7 +112,7 @@ const App = () => {
                 }
                 const temp = captionList[i];
                 captionList[i] = captionList[i - 1];
-                captionList [i - 1] = temp;
+                captionList[i - 1] = temp;
                 setCaptions(captionList);
                 break; // we can stop now!
             }
@@ -128,7 +128,7 @@ const App = () => {
                 }
                 const temp = captionList[i];
                 captionList[i] = captionList[i + 1];
-                captionList [i + 1] = temp;
+                captionList[i + 1] = temp;
                 setCaptions(captionList);
                 break; // we can stop now!
             }
@@ -148,17 +148,14 @@ const App = () => {
             </div>
             <div className="container">
 
-                {/* submission form with onAdd prop for the submit button */}
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
                     <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption} 
                     onShiftup={moveCaptionUp} onShiftDown={moveCaptionDown}/>)
                     : ( "Please input captions!" )}
-                {/* <SubmitFile /> */}
             </div>
 
-            <div className="container">
+            <div className="container-video">
               <InputURL/>
-              <AddPreviewCaption savePrev={savePreviewCaptions}/>
             </div>
 
         </div>

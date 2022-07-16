@@ -47,6 +47,18 @@ body {
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
+  max-height: 700px;
+  border: 2px solid black;
+  padding: 30px;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.container-video {
+  width: 800px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
   border: 2px solid black;
   padding: 30px;
   border-radius: 5px;
