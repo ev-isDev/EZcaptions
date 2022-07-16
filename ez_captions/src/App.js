@@ -43,6 +43,8 @@ const App = () => {
         },
     ]);
 
+    let capFile = null;
+
     // add a new caption and give it a random ID
     const addCaption = (caption) => {
         for (var i = 0; i < captions.length; i++) {
@@ -86,6 +88,11 @@ const App = () => {
         setCaptions( captions.map((caption) => caption.id ===
         updatedCaption.id ? updatedCaption : caption ) );
     };
+
+    // delete all captions function
+    const deleteAllCaptions = () => {
+        setCaptions((captions) => []);
+    }
 
     const savePreviewCaptions = (prevCaptions) => {
         setCaptions([...captions, ...prevCaptions]);
@@ -135,11 +142,41 @@ const App = () => {
         }
     };
 
+    const setCaptionFile = (file) => {
+        capFile = file;
+    };
+
+    const importCaptionFile = (file) => {
+        deleteAllCaptions();
+        const reader = new FileReader();
+        let newCaptions = [];
+        reader.readAsText(capFile.target.files[0]);
+        reader.onload = (e) => {
+            // split the file via map and then split the lines via split
+            const lines = e.target.result
+                .split("\n")
+                .map((line) => line.split("\r")[0])
+                .filter((line) => line.length > 0);
+            //console.log(lines)
+            // get caption from next three lines and add it to the captions list
+            for (let i = 0; i < lines.length; i += 3) {
+                const cap = {
+                    id: lines[i],
+                    start: lines[i + 1].split(" --> ")[0],
+                    end: lines[i + 1].split(" --> ")[1],
+                    text: lines[i + 2],
+                    edit: false,
+                };
+                newCaptions.push(cap);
+            }
+            setCaptions((captions) => [...captions, ...newCaptions]);
+        }
+    };
 
     return (
         <div>
           <Header onDownload={() => downloadCaptions(captions)} onImport={openImportMenu} onLogin = {openLoginMenu}/> 
-          {importMenu && <SubmitFile closeModal={setImportMenu}/>}
+          {importMenu && <SubmitFile closeModal={setImportMenu} onChange={setCaptionFile} submitCapFile={importCaptionFile}/>}
           {loginMenu && <Login closeModal ={setLoginMenu}/>}
         <div className="row">
             <div className='new_caption'> 
