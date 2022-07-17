@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import React from 'react';
+import Login from './Login';
 import './RegisterStyle.css';
 
 
@@ -41,6 +43,11 @@ export default function Form() {
     } else {
       setSubmitted(true);
       setError(false);
+      localStorage.setItem("Name",JSON.stringify(name));
+      localStorage.setItem("Email",JSON.stringify(email));
+      localStorage.setItem("Password",JSON.stringify(password));
+
+      console.log("User information saved.\n");
     }
   };
  

@@ -172,6 +172,7 @@ const App = () => {
             }
             setCaptions((captions) => [...captions, ...newCaptions]);
         }
+        setImportMenu(false);
     };
 
     return (
