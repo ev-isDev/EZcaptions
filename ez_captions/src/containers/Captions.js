@@ -1,5 +1,6 @@
 import React from 'react'
 import Caption from './Caption.js'
+import uuid from 'react-uuid'
 
 const Captions = ({ captions, onDelete, onToggle, onEdit, onShiftup, onShiftDown}) => {
   // This is how the list of captions is rendered. A mapped list of caption objects
@@ -8,7 +9,7 @@ const Captions = ({ captions, onDelete, onToggle, onEdit, onShiftup, onShiftDown
   return (
     <>
     {captions.map((caption) => (
-    <Caption caption={caption} onDelete={onDelete} onToggle={onToggle} onEdit={onEdit} onShiftup={onShiftup} onShiftDown={onShiftDown}/>))}
+    <Caption key={uuid()} caption={caption} onDelete={onDelete} onToggle={onToggle} onEdit={onEdit} onShiftup={onShiftup} onShiftDown={onShiftDown}/>))}
     </>
   )
 }

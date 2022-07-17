@@ -43,8 +43,16 @@ const App = () => {
         },
     ]);
 
+    let capFile = null;
+
     // add a new caption and give it a random ID
     const addCaption = (caption) => {
+        for (var i = 0; i < captions.length; i++) {
+            if (caption.start === captions[i].start) { // same start time!
+                alert('Can\'t have two captions that start at the same time!')
+                return; // we can't add the caption!
+            }
+        }   
         const id = Math.floor(Math.random() * 10000) + 1; // give the new caption a random ID
         const newCaption = { id, ...caption };
         setCaptions([...captions, newCaption]); // update the captions list as the previous list AND the new caption
@@ -81,6 +89,11 @@ const App = () => {
         updatedCaption.id ? updatedCaption : caption ) );
     };
 
+    // delete all captions function
+    const deleteAllCaptions = () => {
+        setCaptions((captions) => []);
+    }
+
     const savePreviewCaptions = (prevCaptions) => {
         setCaptions([...captions, ...prevCaptions]);
     };
@@ -100,13 +113,13 @@ const App = () => {
     const moveCaptionUp = (id) => {
         const captionList = [...captions];
         for (var i = 0; i < captions.length; i++) {
-            if (captionList[i].id == id) {
-                if (i == 0) { // moving up the first element!
+            if (captionList[i].id === id) {
+                if (i === 0) { // moving up the first element!
                     break; // we're not gonna do anything for right now
                 }
                 const temp = captionList[i];
                 captionList[i] = captionList[i - 1];
-                captionList [i - 1] = temp;
+                captionList[i - 1] = temp;
                 setCaptions(captionList);
                 break; // we can stop now!
             }
@@ -116,24 +129,54 @@ const App = () => {
     const moveCaptionDown = (id) => {
         const captionList = [...captions];
         for (var i = 0; i < captions.length; i++) {
-            if (captionList[i].id == id) {
-                if (i == captions.length - 1) { // moving down the last element!
+            if (captionList[i].id === id) {
+                if (i === captions.length - 1) { // moving down the last element!
                     break; // we're not gonna do anything for right now
                 }
                 const temp = captionList[i];
                 captionList[i] = captionList[i + 1];
-                captionList [i + 1] = temp;
+                captionList[i + 1] = temp;
                 setCaptions(captionList);
                 break; // we can stop now!
             }
         }
     };
 
+    const setCaptionFile = (file) => {
+        capFile = file;
+    };
+
+    const importCaptionFile = (file) => {
+        deleteAllCaptions();
+        const reader = new FileReader();
+        let newCaptions = [];
+        reader.readAsText(capFile.target.files[0]);
+        reader.onload = (e) => {
+            // split the file via map and then split the lines via split
+            const lines = e.target.result
+                .split("\n")
+                .map((line) => line.split("\r")[0])
+                .filter((line) => line.length > 0);
+            //console.log(lines)
+            // get caption from next three lines and add it to the captions list
+            for (let i = 0; i < lines.length; i += 3) {
+                const cap = {
+                    id: lines[i],
+                    start: lines[i + 1].split(" --> ")[0],
+                    end: lines[i + 1].split(" --> ")[1],
+                    text: lines[i + 2],
+                    edit: false,
+                };
+                newCaptions.push(cap);
+            }
+            setCaptions((captions) => [...captions, ...newCaptions]);
+        }
+    };
 
     return (
         <div>
           <Header onDownload={() => downloadCaptions(captions)} onImport={openImportMenu} onLogin = {openLoginMenu}/> 
-          {importMenu && <SubmitFile closeModal={setImportMenu}/>}
+          {importMenu && <SubmitFile closeModal={setImportMenu} onChange={setCaptionFile} submitCapFile={importCaptionFile}/>}
           {loginMenu && <Login closeModal ={setLoginMenu}/>}
         <div className="row">
             <div className='new_caption'> 
@@ -142,17 +185,14 @@ const App = () => {
             </div>
             <div className="container">
 
-                {/* submission form with onAdd prop for the submit button */}
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
                     <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption} 
                     onShiftup={moveCaptionUp} onShiftDown={moveCaptionDown}/>)
                     : ( "Please input captions!" )}
-                {/* <SubmitFile /> */}
             </div>
 
-            <div className="container">
+            <div className="container-video">
               <InputURL/>
-              <AddPreviewCaption savePrev={savePreviewCaptions}/>
             </div>
 
         </div>
