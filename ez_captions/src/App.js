@@ -10,6 +10,7 @@ import "./containers/RegisterStyle.css"
 import Form from "./containers/RegisterForm";
 import { arrayMoveImmutable } from 'array-move';
 import InputURL from "./containers/InputURL";
+import ImportVideo from "./containers/ImportVideo";
 import { AddPreviewCaption } from "./containers/AddPreviewCaption";
 
 import VideoPlaybackWindow from "./containers/VideoPlaybackWindow";
@@ -194,6 +195,7 @@ const App = () => {
 
             <div className="container-video">
               <InputURL/>
+              
             </div>
 
         </div>
