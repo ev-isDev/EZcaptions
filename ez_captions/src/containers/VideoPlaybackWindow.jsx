@@ -26,6 +26,29 @@ const VideoPlaybackWindow = ({ savePrev, onAdd }) => {
         handleVideoSpeed,
         toggleMute,
     } = useVideoPlayer(videoElement);
+
+    // function to add current timestamp to page
+    function handleTimeStamp() {
+        if (videoElement.current !== null) {
+            let currentTime = videoElement.current.currentTime;
+            currentTime = Math.floor(currentTime);
+            let hours = Math.floor(currentTime / 3600);
+            let minutes = Math.floor(currentTime / 60);
+            let seconds = currentTime - minutes * 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            hours = ""
+            if (hours < 10 && hours > 0) {
+                hours = "0" + hours + ":";
+            }
+            return hours + minutes + ":" + seconds;
+        }
+        return "00:00";
+    };
     
     return (
 
@@ -49,6 +72,7 @@ const VideoPlaybackWindow = ({ savePrev, onAdd }) => {
                             )}
                         </button>
                     </div>
+                    <h1>{handleTimeStamp()}</h1>
                     <input
                         type="range"
                         min="0"

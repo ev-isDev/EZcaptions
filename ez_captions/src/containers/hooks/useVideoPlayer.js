@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 
+// https://dev.to/franciscomendes10866/how-to-create-a-video-player-in-react-40jj
 const useVideoPlayer = (videoElement) => {
     const [playerState, setPlayerState] = useState({
         isPlaying: false,
