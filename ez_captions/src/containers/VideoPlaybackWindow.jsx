@@ -8,6 +8,7 @@ import { BsPauseFill } from 'react-icons/bs'
 import { BsFillVolumeMuteFill } from 'react-icons/bs'
 import { FaVolumeUp } from 'react-icons/fa'
 
+
 import ReactPlayer from 'react-player/youtube'
 import InputURL from "./InputURL";
 
@@ -15,7 +16,7 @@ import InputURL from "./InputURL";
 // import { AddPreviewCaption } from "./AddPreviewCaption";
 
 
-const VideoPlaybackWindow = ({ savePrev, onAdd }) => {
+const VideoPlaybackWindow = ({ video}) => {
     
     const videoElement = useRef(null);
     const {
@@ -49,10 +50,11 @@ const VideoPlaybackWindow = ({ savePrev, onAdd }) => {
         }
         return "00:00";
     };
+
     
     return (
 
-        
+        <div className="video-container">
             <div className="video-wrapper">
                 
                 <video
@@ -72,7 +74,7 @@ const VideoPlaybackWindow = ({ savePrev, onAdd }) => {
                             )}
                         </button>
                     </div>
-                    <h1>{handleTimeStamp()}</h1>
+                    <h3 style={{fontSize: '12px', color: 'white'}}>{handleTimeStamp()}</h3>
                     <input
                         type="range"
                         min="0"
@@ -95,14 +97,14 @@ const VideoPlaybackWindow = ({ savePrev, onAdd }) => {
                             // <i className="bx bxs-volume-full"></i>
                             <BsFillVolumeMuteFill/>
                         ) : (
-                            //<i className="bx bxs-volume-mute"></i>
+                            // <i className="bx bxs-volume-mute"></i>
                             <FaVolumeUp />
                         )}
                     </button>
 
                 </div>
             </div>
-       
+       </div>
     );
 };
 
