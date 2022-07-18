@@ -2,8 +2,6 @@ import { useState } from 'react';
 import React from 'react';
 import './RegisterStyle.css';
 
-
-
  
 export default function Form() {
  

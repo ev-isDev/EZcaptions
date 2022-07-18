@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Button from './containers/Button'
+import Clear from "./containers/Clear";
 import Captions from "./containers/Captions";
 import NewCaption from "./containers/NewCaption";
 import SubmitFile from "./containers/SubmitFile";
@@ -14,6 +13,7 @@ import "./App.css";
 const App = () => {
     const [importMenu, setImportMenu] = useState(false);
     const [loginMenu, setLoginMenu] = useState(false);
+    const [clearMenu, setClearMenu] = useState(false);
     const [captions, setCaptions] = useState( JSON.parse(localStorage.getItem("userState")) || [
         // default starting captions
         {
@@ -88,21 +88,26 @@ const App = () => {
     // delete all captions function
     const deleteAllCaptions = () => {
         setCaptions((captions) => []);
+        setClearMenu(false) // for the clear button, when importing this does nothing!
     }
-
-    const savePreviewCaptions = (prevCaptions) => {
-        setCaptions([...captions, ...prevCaptions]);
-    };
 
     // function ensures two modals aren't open at the same time
     const openImportMenu = () => {
         setImportMenu(true);
         setLoginMenu(false);
+        setClearMenu(false);
     }
     
     // function ensures two modals aren't open at the same time
-    const openLoginMenu= () => {
+    const openLoginMenu = () => {
         setLoginMenu(true);
+        setImportMenu(false);
+        setClearMenu(false);
+    }
+
+    const openClearMenu = () => {
+        setClearMenu(true);
+        setLoginMenu(false);
         setImportMenu(false);
     }
 
@@ -184,9 +189,10 @@ const App = () => {
 
     return (
         <div>
-          <Header onDownload={() => downloadCaptions(captions)} onImport={openImportMenu} onLogin = {openLoginMenu}/> 
+          <Header onDownload={() => downloadCaptions(captions)} onImport={openImportMenu} onLogin = {openLoginMenu} onClear = {openClearMenu}/> 
           {importMenu && <SubmitFile closeModal={setImportMenu} onChange={setCaptionFile} submitCapFile={importCaptionFile}/>}
           {loginMenu && <Login closeModal ={setLoginMenu}/>}
+          {clearMenu && <Clear closeModal = {setClearMenu} onClear = {deleteAllCaptions}/>}
         <div className="row">
             <div className='new_caption'> 
             <NewCaption onAdd={addCaption} />
@@ -200,7 +206,7 @@ const App = () => {
                     : ( "Please input captions!" )}
             </div>
 
-            {!importMenu && !loginMenu && <div className="container-video">
+            {!importMenu && !loginMenu && !clearMenu && <div className="container-video">
               <InputURL/>
               
             </div>}
