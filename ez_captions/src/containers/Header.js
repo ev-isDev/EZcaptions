@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import Button from './Button'
 import logo from '../EZ.jpg'
 import React from 'react'

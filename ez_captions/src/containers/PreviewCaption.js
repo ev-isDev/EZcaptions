@@ -1,8 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
-import PrevCaptions from './PrevCaptions'
-import Button from './Button'
 
 export const PreviewCaption = ({ prevCaption, deleteCaption, onToggle, onEdit }) => {
     const [text, setPrevText] = useState([prevCaption.text])

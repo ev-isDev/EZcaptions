@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from './Button';
 import { ReactComponent as Logo } from '../loginLogo.svg'
 import Form from './RegisterForm';
 import Home from './Home'

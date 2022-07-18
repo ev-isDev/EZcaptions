@@ -1,5 +1,4 @@
 import React from 'react'
-import { AddPreviewCaption } from './AddPreviewCaption'
 import { PreviewCaption } from './PreviewCaption'
 import uuid from 'react-uuid'
 

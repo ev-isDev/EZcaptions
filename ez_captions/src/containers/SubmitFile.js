@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from './Button';
-import { useState } from 'react'
 
 export const SubmitFile = ({ closeModal, onChange, submitCapFile }) => {
     return (
@@ -10,7 +9,7 @@ export const SubmitFile = ({ closeModal, onChange, submitCapFile }) => {
                 <button className='titleCloseBtn button' onClick={() => {closeModal(false)}}> X </button>
                 </div>
                 <div className='title-modal'>
-                    <h1>Are you sure you'd like to import</h1>
+                    <h1>Are you sure you'd like to import a caption file?</h1>
                     </div>
                     <div className='modal-body'>
                         

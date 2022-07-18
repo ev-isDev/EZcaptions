@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import VideoPlaybackWindow from './VideoPlaybackWindow'
 import Button from './Button';
-import { PreviewCaption } from './PreviewCaption';
 import PrevCaptions from './PrevCaptions';
 
 export const AddPreviewCaption = ({savePrev}) => {
