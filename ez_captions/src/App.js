@@ -14,30 +14,7 @@ const App = () => {
     const [importMenu, setImportMenu] = useState(false);
     const [loginMenu, setLoginMenu] = useState(false);
     const [clearMenu, setClearMenu] = useState(false);
-    const [captions, setCaptions] = useState( JSON.parse(localStorage.getItem("userState")) || [
-        // default starting captions
-        {
-            id: 1,
-            start: "00:00",
-            end: "00:03",
-            text: "[Off-screen voice] Hello there!",
-            edit: false,
-        },
-        {
-            id: 2,
-            start: "00:07",
-            end: "00:12",
-            text: "I am talking to you right now,",
-            edit: false,
-        },
-        {
-            id: 3,
-            start: "00:12",
-            end: "00:16",
-            text: "on the internet!!",
-            edit: false,
-        },
-    ]);
+    const [captions, setCaptions] = useState( JSON.parse(localStorage.getItem("userState")) || []);
 
     let capFile = null;
 
@@ -203,7 +180,9 @@ const App = () => {
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
                     <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption} 
                     onShiftup={moveCaptionUp} onShiftDown={moveCaptionDown}/>)
-                    : ( "Please input captions!" )}
+                    : <div className="caption-empty">
+                    <h2>Please input captions!</h2>
+                    </div>}
             </div>
 
             {!importMenu && !loginMenu && !clearMenu && <div className="container-video">
