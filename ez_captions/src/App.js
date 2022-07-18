@@ -1,48 +1,20 @@
-import React, { useRef, useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Button from './containers/Button'
+import React, { useState } from "react";
+import Clear from "./containers/Clear";
 import Captions from "./containers/Captions";
 import NewCaption from "./containers/NewCaption";
 import SubmitFile from "./containers/SubmitFile";
 import Login from "./containers/Login";
 import Header from "./containers/Header";
 import "./containers/RegisterStyle.css"
-import Form from "./containers/RegisterForm";
-import { arrayMoveImmutable } from 'array-move';
 import InputURL from "./containers/InputURL";
-import ImportVideo from "./containers/ImportVideo";
-import { AddPreviewCaption } from "./containers/AddPreviewCaption";
 
-import VideoPlaybackWindow from "./containers/VideoPlaybackWindow";
 import "./App.css";
 
 const App = () => {
     const [importMenu, setImportMenu] = useState(false);
     const [loginMenu, setLoginMenu] = useState(false);
-    const [captions, setCaptions] = useState([
-        // default starting captions
-        {
-            id: 1,
-            start: "00:00",
-            end: "00:03",
-            text: "[Off-screen voice] Hello there!",
-            edit: false,
-        },
-        {
-            id: 2,
-            start: "00:07",
-            end: "00:12",
-            text: "I am talking to you right now,",
-            edit: false,
-        },
-        {
-            id: 3,
-            start: "00:12",
-            end: "00:16",
-            text: "on the internet!!",
-            edit: false,
-        },
-    ]);
+    const [clearMenu, setClearMenu] = useState(false);
+    const [captions, setCaptions] = useState( JSON.parse(localStorage.getItem("userState")) || []);
 
     let capFile = null;
 
@@ -93,21 +65,26 @@ const App = () => {
     // delete all captions function
     const deleteAllCaptions = () => {
         setCaptions((captions) => []);
+        setClearMenu(false) // for the clear button, when importing this does nothing!
     }
-
-    const savePreviewCaptions = (prevCaptions) => {
-        setCaptions([...captions, ...prevCaptions]);
-    };
 
     // function ensures two modals aren't open at the same time
     const openImportMenu = () => {
         setImportMenu(true);
         setLoginMenu(false);
+        setClearMenu(false);
     }
     
     // function ensures two modals aren't open at the same time
-    const openLoginMenu= () => {
+    const openLoginMenu = () => {
         setLoginMenu(true);
+        setImportMenu(false);
+        setClearMenu(false);
+    }
+
+    const openClearMenu = () => {
+        setClearMenu(true);
+        setLoginMenu(false);
         setImportMenu(false);
     }
 
@@ -148,58 +125,91 @@ const App = () => {
     };
 
     const importCaptionFile = (file) => {
-        deleteAllCaptions();
         const reader = new FileReader();
         let newCaptions = [];
         reader.readAsText(capFile.target.files[0]);
         reader.onload = (e) => {
             // split the file via map and then split the lines via split
             const lines = e.target.result
-                .split("\n")
-                .map((line) => line.split("\r")[0])
+                .split("\n").map((line) => line.split("\r")[0])
                 .filter((line) => line.length > 0);
-            //console.log(lines)
-            // get caption from next three lines and add it to the captions list
+            console.log(lines);
+            if (lines.length % 3 !== 0) {
+                alert("Invalid file! File doesn't have enough data.");
+                return;
+            }
+
+            var exp = new RegExp("[0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}"); // timestamp expression
             for (let i = 0; i < lines.length; i += 3) {
+                let startText = lines[i + 1].split(" --> ")[0];
+                let endText = lines[i + 1].split(" --> ")[1];
+                // verify start time is in correct format using regex
+                if (!exp.test(startText) || !exp.test(endText)) {
+                    alert("Invalid file! Timestamp is not in correct format.");
+                    return;
+                }
+                // Simplify start and end times
+                let hours = "";
+                if (startText.slice(0, 2) !== "00") {
+                    hours = startText.slice(0, 2) + ":";
+                }
+                startText = hours + startText.slice(3, 8);
+
+                hours = "";
+                if (endText.slice(0, 2) !== "00") {
+                    hours = endText.slice(0, 2) + ":";
+                }
+                endText = hours + endText.slice(3, 8);
+
                 const cap = {
                     id: lines[i],
-                    start: lines[i + 1].split(" --> ")[0],
-                    end: lines[i + 1].split(" --> ")[1],
+                    start: startText,
+                    end: endText,
                     text: lines[i + 2],
                     edit: false,
                 };
                 newCaptions.push(cap);
             }
+            deleteAllCaptions();
             setCaptions((captions) => [...captions, ...newCaptions]);
-        }
+        };
         setImportMenu(false);
     };
 
+    React.useEffect(() =>{
+        const data = localStorage.getItem('userState');
+        if(data){
+            setCaptions(JSON.parse(data));
+            console.log(JSON.parse(data));
+        }
+    }, []);
+
+    React.useEffect(() => {
+        localStorage.setItem('userState', JSON.stringify(captions));
+    });
+
     return (
         <div>
-          <Header onDownload={() => downloadCaptions(captions)} onImport={openImportMenu} onLogin = {openLoginMenu}/> 
+          <Header onDownload={() => downloadCaptions(captions)} onImport={openImportMenu} onLogin = {openLoginMenu} onClear = {openClearMenu}/> 
           {importMenu && <SubmitFile closeModal={setImportMenu} onChange={setCaptionFile} submitCapFile={importCaptionFile}/>}
           {loginMenu && <Login closeModal ={setLoginMenu}/>}
+          {clearMenu && <Clear closeModal = {setClearMenu} onClear = {deleteAllCaptions}/>}
         <div className="row">
             <div className='new_caption'> 
-            <NewCaption onAdd={addCaption} />
-
+                <NewCaption onAdd={addCaption} />
             </div>
             <div className="container">
-
                 {captions.length > 0 ? ( // Check if there are no captions in the tool
                     <Captions captions={captions} onDelete={deleteCaption} onToggle={handleEditCaption} onEdit={editCaption} 
-                    onShiftup={moveCaptionUp} onShiftDown={moveCaptionDown}/>)
-                    : ( "Please input captions!" )}
+                    onShiftup={moveCaptionUp} onShiftDown={moveCaptionDown}/>) :
+                    <div className="caption-empty">
+                        <h2>Please input captions!</h2>
+                    </div>}
             </div>
-
-            <div className="container-video">
+            {!importMenu && !loginMenu && !clearMenu && <div className="container-video">
               <InputURL/>
-              
-            </div>
-
+            </div>}
         </div>
-
       </div>
     );
 };

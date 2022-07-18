@@ -320,3 +320,8 @@ input[type="range"]::-moz-range-progress {
   padding: 10px;
   max-width: 100px;
 }
+
+.caption-empty {
+  text-align: Center;
+  color: #808080;
+}

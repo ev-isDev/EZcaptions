@@ -1,10 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
-import { Validator } from 'react'
 import validator from 'validator'
 import ReactPlayer from 'react-player'
-import VideoPlaybackWindow from './VideoPlaybackWindow'
-import { AddPreviewCaption } from './AddPreviewCaption'
 import ImportVideo from './ImportVideo'
 
 const InputURL = () => {

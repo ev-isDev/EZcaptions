@@ -1,16 +1,12 @@
 import React, { useRef } from "react";
 import "../App.css";
 
-import video from "./assets/video.mp4";
 import useVideoPlayer from "./hooks/useVideoPlayer";
 import { BsPlayFill } from 'react-icons/bs';
 import { BsPauseFill } from 'react-icons/bs'
 import { BsFillVolumeMuteFill } from 'react-icons/bs'
 import { FaVolumeUp } from 'react-icons/fa'
 
-
-import ReactPlayer from 'react-player/youtube'
-import InputURL from "./InputURL";
 
 
 // import { AddPreviewCaption } from "./AddPreviewCaption";

@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import ReactPlayer from 'react-player'
 import VideoPlaybackWindow from './VideoPlaybackWindow'
 import video from "./assets/video.mp4";
 
