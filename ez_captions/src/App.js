@@ -19,7 +19,7 @@ import "./App.css";
 const App = () => {
     const [importMenu, setImportMenu] = useState(false);
     const [loginMenu, setLoginMenu] = useState(false);
-    const [captions, setCaptions] = useState([
+    const [captions, setCaptions] = useState( JSON.parse(localStorage.getItem("userState")) || [
         // default starting captions
         {
             id: 1,
@@ -174,6 +174,18 @@ const App = () => {
         }
         setImportMenu(false);
     };
+
+    React.useEffect(() =>{
+        const data = localStorage.getItem('userState');
+        if(data){
+            setCaptions(JSON.parse(data));
+            console.log(JSON.parse(data));
+        }
+    }, []);
+
+    React.useEffect(() => {
+        localStorage.setItem('userState', JSON.stringify(captions));
+    });
 
     return (
         <div>
