@@ -37,26 +37,22 @@ class Login extends React.Component {
         console.log(acc_pwd);
 
         if (!this.state.email || !this.state.pwd) {
-            //setFlag(true);
             flag = true;
             error = true;
             this.errorMessage();
             console.log("Empty params")
         } else if (this.state.email !== acc_email || this.state.pwd !== acc_pwd) {
-            //setFlag(true);
             flag = true;
             error = true;
             this.errorMessage();
             console.log("Im here");
         } else {
-            //setFlag(false);
             flag = false;
             error = false;
             loggedIn = false;
             console.log("here, loggedIn =", loggedIn);
-
+            e.target.elements.pwd.value = acc_pwd;
         }
-        e.target.elements.pwd.value = 'ab';
     }
 
     handleChange = (e) => {
@@ -64,11 +60,10 @@ class Login extends React.Component {
         this.setState({ [name]: value })
     }
     handleSubmit = (e) => {
-        e.preventDefault()
+        //e.preventDefault()
         console.log(this.state);
         this.handleLogin(e);
-        //e.target.elements.email.value = ' ';
-        e.target.elements.pwd.value = 'a';
+        this.forceUpdate();
     }
 
 

@@ -72,7 +72,7 @@ export default function Form() {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h3>Error registering</h3>
+        <h4>Error registering</h4>
       </div>
     );
   };
@@ -82,7 +82,7 @@ export default function Form() {
     <div className="App">
 
       <div>
-        <h2>User Registration</h2>
+        <h3>User Registration</h3>
       </div>
  
       {/* Calling to the methods */}
