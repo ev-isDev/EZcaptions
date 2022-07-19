@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import VideoPlaybackWindow from './VideoPlaybackWindow'
-import video from "./assets/video.mp4";
+import video from "./assets/Demo.mp4";
 
 const ImportVideo = () => {
     const [vid, setVid] = useState(video)
