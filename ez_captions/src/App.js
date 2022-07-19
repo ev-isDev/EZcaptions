@@ -207,7 +207,7 @@ const App = () => {
                     </div>}
             </div>
             {!importMenu && !loginMenu && !clearMenu && <div className="container-video">
-              <InputURL/>
+              <InputURL captionsList={captions}/>
             </div>}
         </div>
       </div>

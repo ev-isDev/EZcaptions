@@ -46,6 +46,33 @@ const VideoPlaybackWindow = ({ video, captions}) => {
         return "00:00";
     };
 
+    function currentCaption(){
+        if (videoElement.current !== null) {
+            let currentTime = Math.floor(videoElement.current.currentTime);
+            for (let i = 0; i < captions.length; i++) {
+                let startTime = timestampStringToNum(captions[i].start);
+                let endTime = timestampStringToNum(captions[i].end);
+                if (currentTime >= startTime && currentTime <= endTime) {
+                    return captions[i].text;
+                }
+            }
+        }
+        return "";
+    }
+
+    function timestampStringToNum(timestampString) {
+        let timestampArr = timestampString.split(":");
+        let hourBuffer = 0
+        let hours = 0;
+        if (timestampArr.length === 3) {
+            hours = parseInt(timestampArr[0]);
+            hourBuffer = 1
+        }
+        let minutes = parseInt(timestampArr[0 + hourBuffer]);
+        let seconds = parseInt(timestampArr[1 + hourBuffer]);
+        return hours * 3600 + minutes * 60 + seconds;
+    }
+
     
     return (
 
@@ -99,6 +126,7 @@ const VideoPlaybackWindow = ({ video, captions}) => {
             </div>
             <div time>
                 <h3 style={{fontSize: '15px', color: 'black'}}>{handleTimeStamp()}</h3>
+                <h1 style={{fontSize: '20px', color: 'black', overflowWrap: 'break-word'}}>{currentCaption()}</h1>
             </div>
        </div>
     );

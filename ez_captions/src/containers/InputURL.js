@@ -20,7 +20,7 @@ const InputURL = ({ captionsList }) => {
   return (
     
         <div className='form-control'>
-        {valid ? <ReactPlayer width="100%" url={URL} controls/> : <ImportVideo/>}
+            {valid ? <ReactPlayer width="100%" url={URL} controls/> : <ImportVideo capList={captionsList}/>}
             <label>or use a Youtube Video link: </label>
             <input type='text' placeholder='Enter URL' value={URL} onChange={(e) => setURL(e.target.value)}/>
             <button onClick={validate} className="btn" style={{width: '100%'}}>Enter</button>
