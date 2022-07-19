@@ -5,9 +5,15 @@ import Form from './RegisterForm';
 import Home from './Home'
 
 // const [flag, setFlag] = useState(false);
-let loggedIn = true;
-let flag = false;
+export let loggedIn = true; //false if logged in, true if need to log in
+let flag = false; //separate log in flag
 let error = false;
+
+export function setLogin(value) {
+    if(value === true || value === false){
+        loggedIn = value;
+    }
+};
 
 class Login extends React.Component {
 
@@ -24,10 +30,17 @@ class Login extends React.Component {
                 style={{
                     display: error ? '' : 'none',
                 }}>
-                <h3>Error logging in</h3>
+                <h5>Error logging in</h5>
             </div>
         );
     };
+
+    // export setLogin(value) {
+    //     if(value === true || value === false){
+    //         loggedIn = value;
+    //     }
+    // };
+
     handleLogin(e) {
         e.preventDefault();
         let acc_email = localStorage.getItem("Email").replace(/"/g, "");
@@ -51,6 +64,7 @@ class Login extends React.Component {
             error = false;
             loggedIn = false;
             console.log("here, loggedIn =", loggedIn);
+            localStorage.setItem("loggedInState",true);
             e.target.elements.pwd.value = acc_pwd;
         }
     }
@@ -63,6 +77,13 @@ class Login extends React.Component {
         //e.preventDefault()
         console.log(this.state);
         this.handleLogin(e);
+        this.forceUpdate();
+    }
+
+    handleLogout = (e) => {
+        loggedIn = true;
+        console.log("LoggedIn after logout= ",loggedIn);
+        localStorage.setItem("loggedInState",false);
         this.forceUpdate();
     }
 
@@ -91,7 +112,9 @@ class Login extends React.Component {
                                 <input type='email' name='email' placeholder='email...' required onChange={this.handleChange} />
                                 <input type='password' name='pwd' placeholder='password...' required onChange={this.handleChange} />
                                 <button onSubmit={this.handleSubmit}>Login</button>
-                            </form>) : (<Home />)}
+                            </form>) : (<Home></Home>)}
+                            {loggedIn ? '': <button onClick={this.handleLogout}>Log out</button>}
+                            
                             {error ? this.errorMessage() : ''}
 
                         </div>

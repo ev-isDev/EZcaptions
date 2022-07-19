@@ -59,7 +59,7 @@ export default function Form() {
         style={{
           display: submitted ? '' : 'none',
         }}>
-        <h3>User {name} registered</h3>
+        <h4>User {name} registered</h4>
       </div>
     );
   };

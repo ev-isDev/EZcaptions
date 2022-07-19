@@ -175,7 +175,8 @@ const App = () => {
 
     React.useEffect(() =>{
         const data = localStorage.getItem('userState');
-        if(data){
+        const loggedInState = localStorage.getItem('loggedInState');
+        if(data && (loggedInState === true)){
             setCaptions(JSON.parse(data));
             console.log(JSON.parse(data));
         }
