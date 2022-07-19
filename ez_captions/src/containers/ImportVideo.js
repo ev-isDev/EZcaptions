@@ -13,7 +13,8 @@ const ImportVideo = () => {
   return (
     <div>
         <VideoPlaybackWindow video={vid}/>
-        <label>Import Your Own Video File! </label>
+        <div style={{height: "20px"}}></div>
+        <label>Import your Video File: </label>
         <input type="file" accept=".mp4" onChange={handleFile}></input>
     </div>
   )

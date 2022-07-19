@@ -8,11 +8,10 @@ import { BsFillVolumeMuteFill } from 'react-icons/bs'
 import { FaVolumeUp } from 'react-icons/fa'
 
 
-
 // import { AddPreviewCaption } from "./AddPreviewCaption";
 
 
-const VideoPlaybackWindow = ({ video}) => {
+const VideoPlaybackWindow = ({ video, captions}) => {
     
     const videoElement = useRef(null);
     const {
@@ -52,7 +51,6 @@ const VideoPlaybackWindow = ({ video}) => {
 
         <div className="video-container">
             <div className="video-wrapper">
-                
                 <video
                     src={video}
                     ref={videoElement}
@@ -97,8 +95,10 @@ const VideoPlaybackWindow = ({ video}) => {
                             <FaVolumeUp />
                         )}
                     </button>
-
                 </div>
+            </div>
+            <div time>
+                <h3 style={{fontSize: '15px', color: 'black'}}>{handleTimeStamp()}</h3>
             </div>
        </div>
     );
